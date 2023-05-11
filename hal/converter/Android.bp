@@ -9,6 +9,10 @@ cc_library_shared {
 
     local_include_dirs: ["include"],
 
+    header_libs: [
+        "libarpal_headers",
+    ],
+
     shared_libs: [
         "android.hardware.audio.core-V2-ndk",
         "android.media.audio.common.types-V3-ndk",
