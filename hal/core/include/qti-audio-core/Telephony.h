@@ -15,8 +15,8 @@
  */
 
 /*
- * ​​​​​Changes from Qualcomm Innovation Center are provided under the following license:
- * Copyright (c) 2023-2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Changes from Qualcomm Technologies, Inc. are provided under the following license:
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  * SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 
@@ -176,6 +176,7 @@ class Telephony : public ::aidl::android::hardware::audio::core::BnTelephony {
             const ::aidl::android::media::audio::common::AudioDevice & rxDevice);
     bool isAnyCallActive();
     bool isValidDevice(const ::aidl::android::media::audio::common::AudioDevice & rxDevice);
+    bool isUsbDeviceConnected(const ::aidl::android::media::audio::common::AudioDevice & rxDevice);
 
   protected:
     // Gaurd all the public APIs
@@ -200,6 +201,8 @@ class Telephony : public ::aidl::android::hardware::audio::core::BnTelephony {
     bool hasValidPlaybackStream{false};
     bool mIsVoiceStarted{false};
     std::string mMuteDirection{""};
+
+    std::vector<::aidl::android::media::audio::common::AudioDevice> mExternalDevices;
 
     using TtyMap = std::map<TelecomConfig::TtyMode, pal_tty_t>;
     const TtyMap mTtyMap{
