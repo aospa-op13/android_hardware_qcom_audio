@@ -374,7 +374,7 @@ std::vector<uint8_t> VisualizerOffloadContext::capture() {
     // if audio framework has stopped playing audio although the effect is still active we must
     // clear the capture buffer to return silence
     if ((mLastCaptureIdx == mCaptureIdx) && (mBufferUpdateTime.tv_sec != 0) &&
-        (deltaMs > kMaxStallTimeMs)) {
+        (static_cast<uint32_t>(deltaMs) > kMaxStallTimeMs)) {
         LOG(DEBUG) << __func__ << " capture going to idle";
         mBufferUpdateTime.tv_sec = 0;
         return result;
